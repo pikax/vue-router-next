@@ -102,14 +102,15 @@ const app = createApp({
         <li><router-link to="/bar#anchor2">/bar#anchor2</router-link></li>
         <li><router-link to="/bar#1number">/bar#1number</router-link></li>
       </ul>
-      <router-view class="view" v-slot="{ Component, props }">
+      <router-view class="view" v-slot="{ Component- 2 logs of mounted
+- 0 logs of unmounted }">
         <transition
           name="fade"
           mode="out-in"
           @before-enter="flushWaiter"
           @before-leave="setupWaiter"
         >
-          <component :is="Component" v-bind="props"></component>
+          <component :is="Component"></component>
         </transition>
       </router-view>
     </div>

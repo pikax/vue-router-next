@@ -515,10 +515,6 @@ export function createRouter({
     for (const record of leavingRecords) {
       // remove registered guards from removed matched records
       record.leaveGuards = []
-      // free the references
-
-      // TODO: add tests
-      record.instances = {}
     }
 
     // only consider as push if it's not the first navigation

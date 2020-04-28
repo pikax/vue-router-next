@@ -129,17 +129,29 @@
       </li>
     </ul>
     <button @click="toggleViewName">Toggle view</button>
+
+    <hr />
+
+    <!-- <transition
+      name="fade"
+      mode="out-in"
+      @before-enter="flushWaiter"
+      @before-leave="setupWaiter"
+    >
+      <router-view :name="viewName" :route="$route" />
+    </transition> -->
+    <!-- <router-view :name="viewName" :route="$route" /> -->
+
+    <!-- <router-view :name="viewName" v-slot="{ Component }">
+        <component :is="Component" />
+      </router-view> -->
+
     <Suspense>
       <template #default>
-        <router-view :name="viewName" v-slot="{ Component, props }">
-          <!-- <transition
-            name="fade"
-            mode="out-in"
-            @before-enter="flushWaiter"
-            @before-leave="setupWaiter"
-          > -->
-          <component v-if="Component" :is="Component" v-bind="props" />
-          <!-- </transition> -->
+        <router-view :name="viewName" v-slot="{ Component }">
+          <keep-alive>
+            <component :is="Component" />
+          </keep-alive>
         </router-view>
       </template>
       <template #fallback>
