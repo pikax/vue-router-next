@@ -46,7 +46,6 @@ export {
   RouteLocationMatched,
   RouteLocationOptions,
   RouteRecordRedirectOption,
-  RouteNamedLocation,
   defineRoutes,
   NamedLocationMap,
   ExtractNamedRoutes,
