@@ -69,9 +69,11 @@ export interface LocationAsName {
 /**
  * @internal
  */
-export interface LocationAsRelativeRaw {
-  name?: {} extends NamedLocationMap ? RouteRecordName : keyof NamedLocationMap
-  params?: RouteParamsRaw
+export interface LocationAsRelativeRaw<
+  T extends keyof NamedLocationMap = keyof NamedLocationMap
+> {
+  name?: {} extends NamedLocationMap ? RouteRecordName : T
+  params?: {} extends NamedLocationMap ? RouteParamsRaw : NamedLocationMap[T]
 }
 
 export interface LocationAsRelative {
@@ -231,7 +233,7 @@ export interface _RouteRecordBase extends PathParserOptions {
   /**
    * Array of nested routes.
    */
-  children?: RouteRecordRaw[]
+  children?: RouteRecordRaw[] | Readonly<RouteRecordRaw[]>
   /**
    * Aliases for the record. Allows defining extra paths that will behave like a
    * copy of the record. Allows having paths shorthands like `/users/:id` and
